@@ -1,14 +1,17 @@
 import 'package:weather_snap/core/app_export.dart';
 import 'package:weather_snap/providers/forecast_provider.dart';
 import 'package:weather_snap/providers/home_provider.dart';
+import 'package:weather_snap/providers/location_provider.dart';
 import 'package:weather_snap/providers/sidebar_provider.dart';
+import 'package:weather_snap/screens/search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final sidebarProvider = Provider.of<SidebarProvider>(context);
+    final locationProvider =
+        Provider.of<LocationProvider>(context, listen: false);
     final homeProvider = Provider.of<HomeProvider>(context, listen: false);
     final forecastProvider =
         Provider.of<ForecastProvider>(context, listen: false);
@@ -16,6 +19,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: ChangeNotifierProvider(
         create: (context) {
+          locationProvider.permissionChecker();
           forecastProvider.getForecast();
           return forecastProvider;
         },
@@ -63,11 +67,19 @@ class HomeScreen extends StatelessWidget {
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 30,
-                              text: cityName,
+                              text: forecast.location.name,
                             ),
-                            const Icon(
-                              Icons.search,
-                              color: Colors.white,
+                            GestureDetector(
+                              onTap: () {
+                                showSearch(
+                                  context: context,
+                                  delegate: SearchScreen(context),
+                                );
+                              },
+                              child: const Icon(
+                                Icons.search,
+                                color: Colors.white,
+                              ),
                             ),
                           ],
                         ),

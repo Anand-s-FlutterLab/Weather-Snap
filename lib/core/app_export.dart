@@ -10,3 +10,4 @@ export 'package:weather_snap/widget/loading_animations.dart';
 export 'package:weather_snap/widget/custom_text.dart';
 export 'package:weather_snap/widget/sidebar.dart';
 export 'package:weather_snap/routes/app_routes.dart';
+export 'package:weather_snap/core/Utils/color_constant.dart';

@@ -1,4 +1,5 @@
 import 'package:weather_snap/core/app_export.dart';
+import 'package:get/get.dart';
 import 'package:weather_snap/providers/sidebar_provider.dart';
 
 Widget buildSidebar(BuildContext context, int drawerSelectedIndex) {
@@ -6,7 +7,9 @@ Widget buildSidebar(BuildContext context, int drawerSelectedIndex) {
     elevation: 10,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
-          topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
+        topRight: Radius.circular(20),
+        bottomRight: Radius.circular(20),
+      ),
     ),
     child: Container(
       decoration: BoxDecoration(
@@ -78,30 +81,22 @@ Widget buildSidebar(BuildContext context, int drawerSelectedIndex) {
             context: context,
             drawerSelected: drawerSelectedIndex == 3,
             index: 3,
-            selectedIcon: Icons.search,
-            title: "Search",
-            unselectedIcon: Icons.search_outlined,
-          ),
-          drawerListTile(
-            context: context,
-            drawerSelected: drawerSelectedIndex == 4,
-            index: 4,
             selectedIcon: Icons.settings,
             title: "Setting",
             unselectedIcon: Icons.settings_outlined,
           ),
           drawerListTile(
             context: context,
-            drawerSelected: drawerSelectedIndex == 5,
-            index: 5,
+            drawerSelected: drawerSelectedIndex == 4,
+            index: 4,
             selectedIcon: Icons.feedback,
             title: "Feedback",
             unselectedIcon: Icons.feedback_outlined,
           ),
           drawerListTile(
             context: context,
-            drawerSelected: drawerSelectedIndex == 6,
-            index: 6,
+            drawerSelected: drawerSelectedIndex == 5,
+            index: 5,
             selectedIcon: Icons.info,
             title: "Info",
             unselectedIcon: Icons.info_outline,
@@ -149,6 +144,9 @@ Widget drawerListTile({
         onTap: () {
           Provider.of<SidebarProvider>(context, listen: false)
               .drawerSelectedIndex = index;
+          if (index == 5) {
+            Get.toNamed(AppRoutes.infoScreen);
+          }
         },
       ),
     ),
