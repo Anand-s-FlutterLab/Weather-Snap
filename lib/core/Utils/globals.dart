@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-String currentTempUnit = "C";
-String currentWindUnit = "KPH";
-String currentPressureUnit = "MB";
-
 class LocationNotifier extends ChangeNotifier {
   String _long = "71.68";
   String _lat = "22.7";

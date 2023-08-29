@@ -1,6 +1,6 @@
+import 'package:get/get.dart';
 import 'package:weather_snap/core/app_export.dart';
 import 'package:weather_snap/providers/forecast_provider.dart';
-import 'package:weather_snap/providers/home_provider.dart';
 import 'package:weather_snap/providers/location_provider.dart';
 import 'package:weather_snap/providers/sidebar_provider.dart';
 import 'package:weather_snap/screens/search_screen.dart';
@@ -12,7 +12,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final locationProvider =
         Provider.of<LocationProvider>(context, listen: false);
-    final homeProvider = Provider.of<HomeProvider>(context, listen: false);
     final forecastProvider =
         Provider.of<ForecastProvider>(context, listen: false);
 
@@ -228,7 +227,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 25,
                             ),
                             Row(
@@ -243,7 +242,7 @@ class HomeScreen extends StatelessWidget {
                                       .round()
                                       .toString(),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 50,
                                 ),
                                 columnImageText(
@@ -261,7 +260,7 @@ class HomeScreen extends StatelessWidget {
                           height: 25,
                         ),
                         Container(
-                          padding: EdgeInsets.only(top: 15, bottom: 15),
+                          padding: const EdgeInsets.only(top: 15, bottom: 15),
                           decoration: BoxDecoration(
                             color: Colors.greenAccent.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(12),
@@ -288,28 +287,33 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 25,
                         ),
-                        Container(
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              customText(
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.forecastScreen, );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                customText(
+                                    color: Colors.white,
+                                    text: "Check the Forecast Ahead!",
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 23),
+                                const Icon(
+                                  Icons.arrow_forward_ios_rounded,
                                   color: Colors.white,
-                                  text: "Check the Forecast Ahead!",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 23),
-                              Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                color: Colors.white,
-                              )
-                            ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         const SizedBox(

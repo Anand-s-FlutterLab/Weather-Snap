@@ -11,8 +11,8 @@ class ForecastProvider with ChangeNotifier {
   Future<bool> getForecast() async {
     forecastInitialized = false;
     try {
-      Response currentWeather =
-      await Dio().get("$baseUrl/$forecast?Key=$apiKey&q=${_locationNotifier.lat},${_locationNotifier.long}");
+      Response currentWeather = await Dio().get(
+          "$baseUrl/$forecast?Key=$apiKey&q=${_locationNotifier.lat},${_locationNotifier.long}&days=$days");
       if (currentWeather.statusCode == 200) {
         var jsonData = currentWeather.data as Map<String, dynamic>;
         forecastModel = ForecastModel.fromJson(jsonData);

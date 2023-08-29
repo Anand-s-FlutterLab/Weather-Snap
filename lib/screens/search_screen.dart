@@ -32,6 +32,35 @@ class SearchScreen extends SearchDelegate {
   };
 
   @override
+  ThemeData appBarTheme(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    return theme.copyWith(
+      inputDecorationTheme: InputDecorationTheme(
+        labelStyle: const TextStyle(color: Colors.white),
+        focusColor: Colors.white,
+        contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+        hintStyle: const TextStyle(color: Colors.grey),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.white, width: 2),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.white, width: 2),
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      textTheme: const TextTheme(
+        titleMedium: TextStyle(color: Colors.white), // <-- that's the one
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        toolbarHeight: 80,
+      ),
+    );
+  }
+
+  @override
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
@@ -66,48 +95,58 @@ class SearchScreen extends SearchDelegate {
             return circleLoadingAnimation();
           } else {
             final search = searchProvider.searchResults;
-            return GridView.builder(
-              padding: const EdgeInsets.all(15),
-              shrinkWrap: true,
-              itemCount: search.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 4 / 1,
-                crossAxisSpacing: 25,
-                mainAxisSpacing: 15,
+            return Container(
+              height: height,
+              width: width,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xff000000),
+                    Color(0xff130f40),
+                  ],
+                ),
               ),
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {
-                    // locationNotifier.updateLocation(
-                    //   search[index].lon.toString(),
-                    //   search[index].lat.toString(),
-                    //   search[index].name,
-                    // );
-                    handleLocationUpdate(
-                      search[index].lon.toString(),
-                      search[index].lat.toString(),
-                      search[index].name,
-                    );
-
-                    forecastProvider.getForecast();
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.indigo.shade900,
-                      borderRadius: BorderRadius.circular(40),
+              child: GridView.builder(
+                padding: const EdgeInsets.all(15),
+                shrinkWrap: true,
+                itemCount: search.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 4 / 1,
+                  crossAxisSpacing: 25,
+                  mainAxisSpacing: 15,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      handleLocationUpdate(
+                        search[index].lon.toString(),
+                        search[index].lat.toString(),
+                        search[index].name,
+                      );
+                      forecastProvider.getForecast();
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: height * 0.15,
+                      width: width * 0.42,
+                      decoration: BoxDecoration(
+                        color: Colors.green.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      child: customText(
+                        color: Colors.green.shade700,
+                        fontWeight: FontWeight.bold,
+                        fontSize: width * 0.058,
+                        text: search[index].name,
+                      ),
                     ),
-                    child: customText(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                      text: search[index].name,
-                    ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             );
           }
         },
@@ -117,47 +156,58 @@ class SearchScreen extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return GridView.builder(
-      padding: const EdgeInsets.all(15),
-      shrinkWrap: true,
-      itemCount: topIndianCityNames.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 4 / 1,
-        crossAxisSpacing: 25,
-        mainAxisSpacing: 15,
+    return Container(
+      height: height,
+      width: width,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xff000000),
+            Color(0xff130f40),
+          ],
+        ),
       ),
-      itemBuilder: (BuildContext context, int index) {
-        return GestureDetector(
-          onTap: () {
-            // locationNotifier.updateLocation(
-            //   topIndianCityNames.entries.elementAt(index).value[1].toString(),
-            //   topIndianCityNames.entries.elementAt(index).value[0].toString(),
-            //   topIndianCityNames.keys.elementAt(index),
-            // );
-            handleLocationUpdate(
-              topIndianCityNames.entries.elementAt(index).value[1].toString(),
-              topIndianCityNames.entries.elementAt(index).value[0].toString(),
-              topIndianCityNames.keys.elementAt(index),
-            );
-            forecastProvider.getForecast();
-            Navigator.pop(context);
-          },
-          child: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.indigo.shade900,
-              borderRadius: BorderRadius.circular(40),
+      child: GridView.builder(
+        padding: const EdgeInsets.all(15),
+        shrinkWrap: true,
+        itemCount: topIndianCityNames.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 4 / 1,
+          crossAxisSpacing: 25,
+          mainAxisSpacing: 15,
+        ),
+        itemBuilder: (BuildContext context, int index) {
+          return GestureDetector(
+            onTap: () {
+              handleLocationUpdate(
+                topIndianCityNames.entries.elementAt(index).value[1].toString(),
+                topIndianCityNames.entries.elementAt(index).value[0].toString(),
+                topIndianCityNames.keys.elementAt(index),
+              );
+              forecastProvider.getForecast();
+              Navigator.pop(context);
+            },
+            child: Container(
+              alignment: Alignment.center,
+              height: height * 0.15,
+              width: width * 0.42,
+              decoration: BoxDecoration(
+                color: Colors.green.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(40),
+              ),
+              child: customText(
+                color: Colors.green.shade700,
+                fontWeight: FontWeight.bold,
+                fontSize: width * 0.058,
+                text: topIndianCityNames.keys.elementAt(index),
+              ),
             ),
-            child: customText(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-              fontSize: 20,
-              text: topIndianCityNames.keys.elementAt(index),
-            ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

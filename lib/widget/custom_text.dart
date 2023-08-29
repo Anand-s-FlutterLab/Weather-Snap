@@ -11,7 +11,7 @@ Widget customText({
 }) {
   return Text(
     text,
-    style: GoogleFonts.lato(
+    style: GoogleFonts.signikaNegative(
       color: color,
       fontSize: fontSize,
       fontWeight: fontWeight,

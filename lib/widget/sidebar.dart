@@ -144,6 +144,15 @@ Widget drawerListTile({
         onTap: () {
           Provider.of<SidebarProvider>(context, listen: false)
               .drawerSelectedIndex = index;
+          if (index == 1) {
+            Get.toNamed(AppRoutes.homeScreen);
+          }
+          if (index == 2) {
+            Get.toNamed(AppRoutes.forecastScreen);
+          }
+          if (index == 3) {
+            Get.toNamed(AppRoutes.settingScreen);
+          }
           if (index == 5) {
             Get.toNamed(AppRoutes.infoScreen);
           }
