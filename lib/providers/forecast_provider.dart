@@ -27,7 +27,13 @@ class ForecastProvider with ChangeNotifier {
     return forecastInitialized;
   }
 
-  void updateLocation(String newLat, String newLong, String newCity) {
-    _locationNotifier.updateLocation(newLong, newLat, newCity);
+  void updateLocation(
+    String newLat,
+    String newLong,
+  ) {
+    _locationNotifier.updateLocation(
+      newLong,
+      newLat,
+    );
   }
 }

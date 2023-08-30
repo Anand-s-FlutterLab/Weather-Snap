@@ -4,7 +4,7 @@ export 'package:dio/dio.dart';
 
 export 'package:weather_snap/core/constants/constants.dart';
 export 'package:weather_snap/core/Utils/image_constants.dart';
-export 'package:weather_snap/core/Utils/globals.dart';
+export 'package:weather_snap/providers/location_notifier_provider.dart';
 export 'package:weather_snap/core/Utils/size_utils.dart';
 export 'package:weather_snap/widget/loading_animations.dart';
 export 'package:weather_snap/widget/custom_text.dart';

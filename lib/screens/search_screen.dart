@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:weather_snap/core/app_export.dart';
 import 'package:weather_snap/providers/search_provider.dart';
 import 'package:weather_snap/providers/forecast_provider.dart';
@@ -14,8 +15,8 @@ class SearchScreen extends SearchDelegate {
   late final forecastProvider =
       Provider.of<ForecastProvider>(context, listen: false);
 
-  void handleLocationUpdate(String lon, String lat, String name) {
-    locationNotifier.updateLocation(lon, lat, name);
+  void handleLocationUpdate(String lon, String lat) {
+    locationNotifier.updateLocation(lon, lat);
   }
 
   Map<String, List<double>> topIndianCityNames = {
@@ -124,10 +125,9 @@ class SearchScreen extends SearchDelegate {
                       handleLocationUpdate(
                         search[index].lon.toString(),
                         search[index].lat.toString(),
-                        search[index].name,
                       );
                       forecastProvider.getForecast();
-                      Navigator.pop(context);
+                      Get.offNamed(AppRoutes.homeScreen);
                     },
                     child: Container(
                       alignment: Alignment.center,
@@ -185,10 +185,9 @@ class SearchScreen extends SearchDelegate {
               handleLocationUpdate(
                 topIndianCityNames.entries.elementAt(index).value[1].toString(),
                 topIndianCityNames.entries.elementAt(index).value[0].toString(),
-                topIndianCityNames.keys.elementAt(index),
               );
               forecastProvider.getForecast();
-              Navigator.pop(context);
+              Get.offNamed(AppRoutes.homeScreen);
             },
             child: Container(
               alignment: Alignment.center,

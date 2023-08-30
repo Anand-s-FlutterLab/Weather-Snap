@@ -11,6 +11,7 @@ String uv = "assets/common/uv.png";
 String visibility = "assets/common/visibility.png";
 String wind = "assets/common/wind.png";
 String windDirection = "assets/common/windDirection.png";
+String timer = "assets/common/timer.png";
 
 
 String appIcon = "assets/common/appIcon.png";
