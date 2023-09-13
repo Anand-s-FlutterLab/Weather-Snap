@@ -3,12 +3,14 @@ import 'package:weather_snap/screens/forecast_screen.dart';
 import 'package:weather_snap/screens/home_screen.dart';
 import 'package:weather_snap/screens/info_screen.dart';
 import 'package:weather_snap/screens/setting_screen.dart';
+import 'package:weather_snap/screens/splash_screen.dart';
 
 class AppRoutes {
   static String homeScreen = "/home_screen";
   static String infoScreen = "/info_screen";
   static String forecastScreen = "/forecast_screen";
   static String settingScreen = "/setting_screen";
+  static String splashScreen = "/splash_screen";
 
   static List<GetPage> pages = [
     GetPage(
@@ -30,6 +32,12 @@ class AppRoutes {
     GetPage(
       name: settingScreen,
       page: () => const SettingScreen(),
+      bindings: const [],
+      transition: Transition.zoom,
+    ),
+    GetPage(
+      name: splashScreen,
+      page: () => const SplashScreen(),
       bindings: const [],
       transition: Transition.zoom,
     ),

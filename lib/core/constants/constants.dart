@@ -11,3 +11,6 @@ String astronomy = "astronomy.json";
 
 int days = 3;
 
+String hiveBoxName = "localStorageBox";
+String hiveBoxLocationKey = "LocalLocationData";
+String hiveBoxSettingKey = "LocalSettingData";

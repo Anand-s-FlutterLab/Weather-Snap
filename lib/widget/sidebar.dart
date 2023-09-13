@@ -87,16 +87,8 @@ Widget buildSidebar(BuildContext context, int drawerSelectedIndex) {
           ),
           drawerListTile(
             context: context,
-            drawerSelected: drawerSelectedIndex == 4,
-            index: 4,
-            selectedIcon: Icons.feedback,
-            title: "Feedback",
-            unselectedIcon: Icons.feedback_outlined,
-          ),
-          drawerListTile(
-            context: context,
             drawerSelected: drawerSelectedIndex == 5,
-            index: 5,
+            index: 4,
             selectedIcon: Icons.info,
             title: "Info",
             unselectedIcon: Icons.info_outline,
@@ -153,7 +145,7 @@ Widget drawerListTile({
           if (index == 3) {
             Get.toNamed(AppRoutes.settingScreen);
           }
-          if (index == 5) {
+          if (index == 4) {
             Get.toNamed(AppRoutes.infoScreen);
           }
         },

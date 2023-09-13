@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:weather_snap/core/app_export.dart';
 import 'package:weather_snap/providers/forecast_provider.dart';
+import 'package:weather_snap/providers/initial_provider.dart';
 import 'package:weather_snap/providers/location_provider.dart';
 import 'package:weather_snap/providers/sidebar_provider.dart';
 import 'package:weather_snap/screens/search_screen.dart';
@@ -10,6 +11,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final locationProvider =
         Provider.of<LocationProvider>(context, listen: false);
     final forecastProvider =
@@ -37,14 +39,8 @@ class HomeScreen extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                      // Color(0xff04619f),
-                      // Color(0xff000000),
-
                       Color(0xff000000),
                       Color(0xff130f40),
-
-                      // Color(0xff12100e),
-                      // Color(0xff2b4162),
                     ])),
                 child: SafeArea(
                   child: SingleChildScrollView(
@@ -292,7 +288,9 @@ class HomeScreen extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.toNamed(AppRoutes.forecastScreen, );
+                            Get.toNamed(
+                              AppRoutes.forecastScreen,
+                            );
                           },
                           child: Container(
                             padding: const EdgeInsets.all(15),
