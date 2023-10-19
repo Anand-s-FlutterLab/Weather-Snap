@@ -89,7 +89,7 @@ class ForecastScreen extends StatelessWidget {
                           height: 20,
                         ),
                         SizedBox(
-                          height: 260,
+                          height: 270,
                           child: ListView.separated(
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
