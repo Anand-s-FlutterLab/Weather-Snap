@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final searchModel = searchModelFromJson(jsonString);
-
 import 'dart:convert';
 
 List<SearchModel> searchModelFromJson(String str) => List<SearchModel>.from(json.decode(str).map((x) => SearchModel.fromJson(x)));

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:weather_snap/core/constants/constants.dart';
+import 'package:weather_snap/models/hive_model.dart';
 
 class LocationNotifier extends ChangeNotifier {
-  String _long = "71.68";
-  String _lat = "22.7";
+  late String _long;
+  late String _lat;
 
   String get long => _long;
 
@@ -15,5 +18,14 @@ class LocationNotifier extends ChangeNotifier {
     Future.microtask(() {
       notifyListeners();
     });
+    updateHiveLocationData();
+  }
+
+  void updateHiveLocationData() async {
+    final box = await Hive.openBox(hiveBoxName);
+    final hiveLocationData = hiveLocationModelToJson(
+      HiveLocationModel(lat: _lat, long: _long),
+    );
+    box.put(hiveBoxLocationKey, hiveLocationData);
   }
 }
